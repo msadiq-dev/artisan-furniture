@@ -1,0 +1,6 @@
+{
+  "name": "Artisan Furniture Studio",
+  "description": "Premium contemporary furniture brand and studio with complete order management, catalog, and inventory operations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

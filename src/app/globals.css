@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #FAF7F0;
+    --foreground: #26262B;
+    --card: #FFFFFF;
+    --card-foreground: #26262B;
+    --popover: #FFFFFF;
+    --popover-foreground: #26262B;
+    --muted: #EFEAE0;
+    --muted-foreground: #6B665E;
+    --accent: #6B6B3A;
+    --accent-foreground: #FFFFFF;
+    --bronze: #9C7A4B;
+    --bronze-foreground: #FFFFFF;
+    --border: #DDD6C8;
+    --input: #DDD6C8;
+    --ring: #6B6B3A;
+    --destructive: #B3402F;
+    --destructive-foreground: #FFFFFF;
+  }
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-bronze: var(--bronze);
+  --color-bronze-foreground: var(--bronze-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --font-serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  --font-sans: var(--font-inter), 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-serif);
+}
+
+/* ==========================================================================
+   Responsive Architecture & Breakpoints
+   - phone:          base (320px to 639px)
+   - large phone:    sm   min-width 640px
+   - tablet:         md   min-width 768px (portrait tablets, 768px to 1023px)
+   - laptop:         lg   min-width 1024px (landscape tablets & small laptops)
+   - desktop:        xl   min-width 1280px
+   ========================================================================== */
+
+.container-custom {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (min-width: 768px) {
+  .container-custom {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+/* Form Inputs: 16px font-size minimum on phones prevents iOS focus zoom */
+input, textarea, select {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  input, textarea, select {
+    font-size: 14px;
+  }
+}
+
+/* Safe Area Insets for notched phones & home indicator bars */
+.safe-top {
+  padding-top: max(1rem, env(safe-area-inset-top));
+}
+
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.safe-bottom-bar {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+/* Touch Input & Pointer Preferences */
+@media (hover: none) and (pointer: coarse) {
+  /* Ensure all interactive controls meet minimum 44x44px touch target */
+  button,
+  [role="button"],
+  input[type="checkbox"],
+  input[type="radio"],
+  .touch-target {
+    min-height: 44px;
+  }
+
+  /* No hover-only hidden state on touch */
+  .touch-always-visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Phones in Landscape Orientation (short viewports) */
+@media (orientation: landscape) and (max-height: 500px) {
+  header.sticky {
+    position: static;
+  }
+  .hero-compact {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+}
+
+/* Print Styles: Clean order receipts without navigation, buttons, or footers */
+@media print {
+  header,
+  footer,
+  nav,
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .container-custom {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .print-clean {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}
+
