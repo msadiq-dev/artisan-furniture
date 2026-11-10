@@ -1,44 +1,21 @@
 import type { Category, Product } from '@/types/database';
 
-export const SEED_CATEGORIES: Category[] = [
-  {
-    id: 'cat-beds-01',
-    name: 'Beds',
-    slug: 'beds',
-    sort_order: 1,
-    is_active: true,
-  },
-  {
-    id: 'cat-sofas-02',
-    name: 'Sofas',
-    slug: 'sofas',
-    sort_order: 2,
-    is_active: true,
-  },
-  {
-    id: 'cat-chairs-03',
-    name: 'Chairs',
-    slug: 'chairs',
-    sort_order: 3,
-    is_active: true,
-  },
-  {
-    id: 'cat-tables-04',
-    name: 'Tables',
-    slug: 'tables',
-    sort_order: 4,
-    is_active: true,
-  },
-  {
-    id: 'cat-storage-05',
-    name: 'Storage',
-    slug: 'storage',
-    sort_order: 5,
-    is_active: true,
-  },
+const SEED_DATE = '2026-01-01T00:00:00.000Z';
+
+const RAW_CATEGORIES: Omit<Category, 'created_at'>[] = [
+  { id: 'cat-beds-01', name: 'Beds', slug: 'beds', sort_order: 1, is_active: true },
+  { id: 'cat-sofas-02', name: 'Sofas', slug: 'sofas', sort_order: 2, is_active: true },
+  { id: 'cat-chairs-03', name: 'Chairs', slug: 'chairs', sort_order: 3, is_active: true },
+  { id: 'cat-tables-04', name: 'Tables', slug: 'tables', sort_order: 4, is_active: true },
+  { id: 'cat-storage-05', name: 'Storage', slug: 'storage', sort_order: 5, is_active: true },
 ];
 
-export const SEED_PRODUCTS: Product[] = [
+export const SEED_CATEGORIES: Category[] = RAW_CATEGORIES.map((c) => ({
+  ...c,
+  created_at: SEED_DATE,
+}));
+
+const RAW_PRODUCTS: Omit<Product, 'created_at' | 'updated_at'>[] = [
   {
     id: 'prod-001',
     category_id: 'cat-beds-01',
@@ -57,11 +34,7 @@ export const SEED_PRODUCTS: Product[] = [
     height_cm: 110,
     is_featured: true,
     is_active: true,
-    category: {
-      id: 'cat-beds-01',
-      name: 'Beds',
-      slug: 'beds',
-    },
+    category: { id: 'cat-beds-01', name: 'Beds', slug: 'beds' },
     images: [],
   },
   {
@@ -82,11 +55,7 @@ export const SEED_PRODUCTS: Product[] = [
     height_cm: 105,
     is_featured: false,
     is_active: true,
-    category: {
-      id: 'cat-beds-01',
-      name: 'Beds',
-      slug: 'beds',
-    },
+    category: { id: 'cat-beds-01', name: 'Beds', slug: 'beds' },
     images: [],
   },
   {
@@ -107,11 +76,7 @@ export const SEED_PRODUCTS: Product[] = [
     height_cm: 85,
     is_featured: true,
     is_active: true,
-    category: {
-      id: 'cat-sofas-02',
-      name: 'Sofas',
-      slug: 'sofas',
-    },
+    category: { id: 'cat-sofas-02', name: 'Sofas', slug: 'sofas' },
     images: [],
   },
   {
@@ -132,11 +97,7 @@ export const SEED_PRODUCTS: Product[] = [
     height_cm: 85,
     is_featured: true,
     is_active: true,
-    category: {
-      id: 'cat-sofas-02',
-      name: 'Sofas',
-      slug: 'sofas',
-    },
+    category: { id: 'cat-sofas-02', name: 'Sofas', slug: 'sofas' },
     images: [],
   },
   {
@@ -157,11 +118,7 @@ export const SEED_PRODUCTS: Product[] = [
     height_cm: 82,
     is_featured: false,
     is_active: true,
-    category: {
-      id: 'cat-chairs-03',
-      name: 'Chairs',
-      slug: 'chairs',
-    },
+    category: { id: 'cat-chairs-03', name: 'Chairs', slug: 'chairs' },
     images: [],
   },
   {
@@ -182,11 +139,7 @@ export const SEED_PRODUCTS: Product[] = [
     height_cm: 76,
     is_featured: true,
     is_active: true,
-    category: {
-      id: 'cat-chairs-03',
-      name: 'Chairs',
-      slug: 'chairs',
-    },
+    category: { id: 'cat-chairs-03', name: 'Chairs', slug: 'chairs' },
     images: [],
   },
   {
@@ -207,11 +160,7 @@ export const SEED_PRODUCTS: Product[] = [
     height_cm: 76,
     is_featured: false,
     is_active: true,
-    category: {
-      id: 'cat-tables-04',
-      name: 'Tables',
-      slug: 'tables',
-    },
+    category: { id: 'cat-tables-04', name: 'Tables', slug: 'tables' },
     images: [],
   },
   {
@@ -232,14 +181,14 @@ export const SEED_PRODUCTS: Product[] = [
     height_cm: 210,
     is_featured: false,
     is_active: true,
-    category: {
-      id: 'cat-storage-05',
-      name: 'Storage',
-      slug: 'storage',
-    },
+    category: { id: 'cat-storage-05', name: 'Storage', slug: 'storage' },
     images: [],
   },
 ];
+
+export const SEED_PRODUCTS: Product[] = RAW_PRODUCTS.map(
+  (p) => ({ ...p, created_at: SEED_DATE, updated_at: SEED_DATE }) as Product
+);
 
 export function getSeedCategories(): Category[] {
   return SEED_CATEGORIES;
