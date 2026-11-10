@@ -19,7 +19,9 @@ export interface Category {
   slug: string;
   sort_order: number;
   is_active: boolean;
-  created_at: string;
+  // FIX: optional, kyunke demo (seed) categories mein created_at nahi hota.
+  // Supabase se aane wali asli rows mein yeh hamesha hota hai.
+  created_at?: string;
 }
 
 export interface Product {
@@ -43,7 +45,8 @@ export interface Product {
   created_at: string;
   updated_at: string;
   images?: ProductImage[];
-  category?: Category;
+  // FIX: product ke andar category ke sirf 3 fields chahiye (id, name, slug)
+  category?: Pick<Category, 'id' | 'name' | 'slug'>;
 }
 
 export interface ProductImage {
